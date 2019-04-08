@@ -10,13 +10,20 @@ class API:
         file = open(cwd + '\\classes\\api_keys.json')
         apiFile = json.load(file)
         self.data = apiFile
+        self.url = apiFile["alphaVantage"]["url"]
         self.endpoints = apiFile["alphaVantage"]["endPoints"]
 
     # Takes a string to search a stock by and returns an array of JSON best matches
     def Search(self, name):
-        url = "https://www.alphavantage.co/query?"
         payload = { 'function': self.endpoints["Search"], 'keywords': name, 'apikey': self.data["alphaVantage"]["apiKey"], 'datatype': 'json'}
-        r = requests.get(url, params=payload)
+        r = requests.get(self.url, params=payload)
         return r.json()
 
-print(API().Search("microsoft"))
+    # @params: String symbol
+    # @returns: JSON containing Stock information like closing price, yesterday price, high, low etc
+    def GetQuote(self, symbol):
+        payload = {'function': self.endpoints['Quote'], 'symbol': symbol, 'apikey': self.data["alphaVantage"]["apiKey"], 'datatype': 'json'}
+        r = requests.get(self.url, params=payload)
+        return r.json()
+
+print(API().GetQuote('MSFT'))

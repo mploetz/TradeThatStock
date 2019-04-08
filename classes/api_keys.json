@@ -1,6 +1,7 @@
 {
     "alphaVantage": {
         "apiKey": "1MJROJCJ6E96KNMM",
+        "url": "https://www.alphavantage.co/query?",
         "endPoints": {
             "Quote": "GLOBAL_QUOTE",
             "Search": "SYMBOL_SEARCH"
