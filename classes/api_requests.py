@@ -25,5 +25,3 @@ class API:
         payload = {'function': self.endpoints['Quote'], 'symbol': symbol, 'apikey': self.data["alphaVantage"]["apiKey"], 'datatype': 'json'}
         r = requests.get(self.url, params=payload)
         return r.json()
-
-print(API().GetQuote('MSFT'))
