@@ -2,8 +2,8 @@
     "alphaVantage": {
         "apiKey": "1MJROJCJ6E96KNMM",
         "endPoints": {
-            "Quote": "https://www.alphavantage.co/query?function=GLOBAL_QUOTE&",
-            "Search": "https://www.alphavantage.co/query?function=function=SYMBOL_SEARCH&"
+            "Quote": "GLOBAL_QUOTE",
+            "Search": "SYMBOL_SEARCH"
         }
     }
 }
