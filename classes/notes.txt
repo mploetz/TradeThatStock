@@ -1,0 +1,9 @@
+--Needed to Calc --
+Beta - Risk Free Rate - Expected Return of Market
+
+-- Risk Free Rates
+Bonds - Coupon Rates (How much money you get back on a consistent basis) - When the bond retires
+
+
+Average Returns:
+-(Todays Price - Yesterdays Price) / Yesterdays Price = Daily Returns
