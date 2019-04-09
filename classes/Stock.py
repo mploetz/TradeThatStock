@@ -1,7 +1,7 @@
 from googlefinance.get import get_code
 from googlefinance.get import get_datum
 from googlefinance.get import get_data
-from api_requests import API
+from classes.api_requests import API
 import json
 
 # Stock has:
@@ -26,5 +26,15 @@ class Stock:
             quote = api.GetQuote(self.Symbol)
             return quote["Global Quote"]['05. price']
         return "No Price Found"
+    
+    def getPrevClose(self):
+        api = API()
+        if (self.Name is not ""):
+            self.Symbol = api.Search(self.Name).bestMatches[0]
+            quote = api.GetQuote(self.Symbol)
 
-print(Stock(Symbol="MSFT").getPrice())
+            return quote["Global Quote"]['08. previous close']
+        elif (self.Symbol is not ""):
+            quote = api.GetQuote(self.Symbol)
+            return quote["Global Quote"]['08. previous close']
+        return "No Price Found"

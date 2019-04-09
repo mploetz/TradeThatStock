@@ -3,6 +3,6 @@ class Algs:
         self.results = []
     
     def AverageReturns(self, stock):
-        todaysPrice = stock.currentPrice
-        yesterdaysPrice = stock.prevClose
+        todaysPrice = float(stock.getPrice())
+        yesterdaysPrice = float(stock.getPrevClose())
         return (todaysPrice - yesterdaysPrice) / yesterdaysPrice
