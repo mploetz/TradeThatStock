@@ -2,6 +2,7 @@ from googlefinance.get import get_code
 from googlefinance.get import get_datum
 from googlefinance.get import get_data
 from classes.api_requests import API
+from classes.Algs import Algs
 import json
 
 # Stock has:
@@ -15,7 +16,16 @@ class Stock:
         self.Name = Name
         self.Symbol = Symbol
 
-    def getPrice(self):
+    # @params: String interval
+    # @returns: Total Returns of given interval
+    # Set outputsize to "full" for most details
+    def GetIntraDay(self, interval, outputsize):
+        api = API()
+        data = api.IntraDay(self.Symbol, interval, outputsize)
+
+        return data
+
+    def GetPrice(self):
         api = API()
         if (self.Name is not ""):
             self.Symbol = api.Search(self.Name).bestMatches[0]
@@ -27,7 +37,13 @@ class Stock:
             return quote["Global Quote"]['05. price']
         return "No Price Found"
     
-    def getPrevClose(self):
+    def GetTotalReturnsXMonths(self, months):
+        api = API()
+        data = api.MonthlyAdjusted(self.Symbol)        
+
+        return Algs().TotalReturn(data, months)
+
+    def GetPrevClose(self):
         api = API()
         if (self.Name is not ""):
             self.Symbol = api.Search(self.Name).bestMatches[0]

@@ -13,6 +13,21 @@ class API:
         self.url = apiFile["alphaVantage"]["url"]
         self.endpoints = apiFile["alphaVantage"]["endPoints"]
 
+    # @params String symbol, String interval, String outputsize
+    # @returns JSON of intraday values for stock
+    def IntraDay(self, symbol, interval, outputsize):
+        payload = {'function': self.endpoints["IntraDay"], 'symbol': symbol, 'interval': interval, 'apikey': self.data["alphaVantage"]["apiKey"], 'datatype': 'json'}
+        r = requests.get(self.url, params=payload)
+
+        return r.json()
+
+
+    def MonthlyAdjusted(self, symbol):
+        payload = {'function': self.endpoints['MonthlyAdjusted'], 'symbol': symbol, 'apikey': self.data["alphaVantage"]["apiKey"], 'datatype': 'json'}
+        r = requests.get(self.url, params=payload)
+
+        return r.json()
+
     # Takes a string to search a stock by and returns an array of JSON best matches
     def Search(self, name):
         payload = { 'function': self.endpoints["Search"], 'keywords': name, 'apikey': self.data["alphaVantage"]["apiKey"], 'datatype': 'json'}
