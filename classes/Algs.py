@@ -9,7 +9,7 @@ class Algs:
         yesterdaysPrice = float(stock.getPrevClose())
         return (todaysPrice - yesterdaysPrice) / yesterdaysPrice
 
-    def TotalReturn(self, stockData, months):
+    def TotalReturnsXMonths(self, stockData, months):
         # Parse the JSON data to get the adjusted closing prices for the past @months
         # Get current query date
         queryDate = stockData["Meta Data"]["3. Last Refreshed"][:7] # grab only year and month (yyyy-mm)
@@ -22,11 +22,12 @@ class Algs:
         for month in monthKeys:
             dataSet.append(monthlyAdjustedData[month])
 
-        print(dataSet)
-        print(dataSet[0]["5. adjusted close"])
         P1 = float(dataSet[0]["5. adjusted close"])
         P0 = float(dataSet[len(dataSet)-1]["5. adjusted close"])
-        print(P1)
-        print(P0)
 
         return (P1 - P0) / P0
+
+    def TotalReturnsXMinutesIntraDay(self, stockData, time):
+
+
+        return 1
